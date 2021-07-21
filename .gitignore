@@ -1,5 +1,6 @@
 ### This project
 *.js
+!assets/js/*.js
 *.d.ts
 
 ### Third party

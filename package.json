@@ -1,6 +1,6 @@
 {
 	"name": "@ngx-ext/google-analytics",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Google Analytics for your Angular application",
 	"license": "MIT",
 	"repository": "ngx-ext/google-analytics",
