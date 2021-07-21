@@ -1,6 +1,6 @@
 export interface Event {
-	category: string;
-	action: string;
-	label?: string;
-	value?: number;
+  category: string;
+  action: string;
+  label?: string;
+  value?: number;
 }

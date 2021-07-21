@@ -1,20 +1,30 @@
 {
-	"name": "angular-ga",
-	"version": "2.0.1",
+	"name": "@ngx-ext/google-analytics",
+	"version": "1.0.0",
 	"description": "Google Analytics for your Angular application",
 	"license": "MIT",
-	"repository": "SamVerschueren/angular-ga",
+	"repository": "ngx-ext/google-analytics",
+  "schematics": "./schematics/collection.json",
+  "ng-add": {
+    "save": "dependencies"
+  },
 	"author": {
-		"name": "Sam Verschueren",
-		"email": "sam.verschueren@gmail.com"
+		"name": "ngx-ext (forked from Sam Verschueren)",
+		"email": "dkucal@gmail.com"
 	},
 	"engines": {
-		"node": ">=8"
+		"node": ">= 8"
 	},
 	"scripts": {
 		"test": "npm run lint",
-		"build": "ng-packagr -p package.json",
-		"lint": "tslint -p . --format stylish"
+		"lint": "tslint -p . --format stylish",
+    "lint:fix": "tslint -p . --format stylish --fix",
+    "build": "ng build google-analytics --prod",
+    "build:schematics": "../../node_modules/.bin/tsc -p tsconfig.schematics.json",
+    "copy:schemas": "rsync -R schematics/*/schema.json ../../dist/google-analytics/",
+    "copy:files": "rsync -R schematics/*/files/** ../../dist/google-analytics/",
+    "copy:collection": "cp schematics/collection.json ../../dist/google-analytics/schematics/collection.json",
+    "postbuild": "npm run build:schematics && npm run copy:collection"
 	},
 	"keywords": [
 		"angular",
@@ -26,25 +36,18 @@
 		"ganalytics"
 	],
 	"peerDependencies": {
-		"@angular/core": "^8.0.0"
+		"@angular/core": ">= 8.0.0"
 	},
 	"devDependencies": {
-		"@angular/common": "^8.0.0",
-		"@angular/compiler": "^8.0.0",
-		"@angular/compiler-cli": "^8.0.0",
-		"@angular/core": "^8.0.0",
-		"@angular/platform-server": "^8.0.0",
+		"@angular/common": "^9.0.0",
+		"@angular/compiler": "^9.0.0",
+		"@angular/compiler-cli": "^9.0.0",
+		"@angular/core": "^9.0.0",
+		"@angular/platform-server": "^9.0.0",
 		"codelyzer": "^5.2.1",
-		"ng-packagr": "^5.7.1",
 		"rxjs": "^6.5.4",
 		"tslint": "^5.8.0",
-		"tslint-xo": "^0.16.0",
-		"typescript": "~3.4.5",
-		"zone.js": "0.10.2"
-	},
-	"ngPackage": {
-		"lib": {
-			"entryFile": "src/index.ts"
-		}
+		"typescript": ">= 3.8",
+		"zone.js": ">= 0.10.2"
 	}
 }

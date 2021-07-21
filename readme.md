@@ -1,4 +1,4 @@
-# angular-ga [![Build Status](https://travis-ci.org/SamVerschueren/angular-ga.svg?branch=master)](https://travis-ci.org/SamVerschueren/angular-ga)
+# @ngx-ext/google-analytics [![Build Status](https://travis-ci.org/ngx-ext/google-analytics.svg?branch=master)](https://travis-ci.org/ngx-ext/google-analytics)
 
 > Google Analytics for your Angular application
 
@@ -6,21 +6,19 @@
 ## Install
 
 ```
-$ npm install --save angular-ga
+$ ng add @ngx-ext/google-analytics
 ```
-
 
 ## Usage
 
 ### Configuration
 
-The Google Analytics tracking script is not included in this module. Make sure to add it to your page.
+The Google Analytics tracking script <b>is included</b> in this module.
 
-```js
+```ts
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { GoogleAnalyticsModule, GA_TOKEN } from 'angular-ga';
-
+import { GoogleAnalyticsModule, GA_TOKEN } from '@ngx-ext/google-analytics';
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -33,24 +31,8 @@ import { AppComponent } from './app.component';
 	],
 	bootstrap: [AppComponent],
 	providers: [
-		{ provide: GA_TOKEN, useValue: 'UA-TOKEN-1' }
+		{ provide: GA_TOKEN, useValue: 'UA-TOKEN-1' } // or use GoogleAnalyticsService.configure(ga-token)
 	]
-})
-export class AppModule { }
-```
-
-It's also possible to leave the configuration empty and configure the library later on through the service.
-
-```js
-@NgModule({
-	imports: [
-		BrowserModule,
-		GoogleAnalyticsModule.forRoot()
-	],
-	declarations: [
-		AppComponent
-	],
-	bootstrap: [AppComponent]
 })
 export class AppModule { }
 ```
@@ -59,7 +41,7 @@ export class AppModule { }
 
 Inject the `GoogleAnalyticsService` into your components or services.
 
-```js
+```ts
 import { Component, OnInit } from '@angular/core';
 import { GoogleAnalyticsService } from 'angular-ga';
 
@@ -83,7 +65,7 @@ export class AppComponent implements OnInit {
 
 #### Configuration
 
-```js
+```ts
 import { Component, OnInit } from '@angular/core';
 import { GoogleAnalyticsService } from 'angular-ga';
 
@@ -101,9 +83,6 @@ export class AppComponent implements OnInit {
 	}
 }
 ```
-
-
-### Service
 
 
 ## API
@@ -133,7 +112,7 @@ Emit a Google Analytics event.
 
 Type: `string`
 
-Typically the object that was interacted with (e.g. `Video`)
+Typically, the object that was interacted with (e.g. `Video`)
 
 ##### action
 
@@ -155,11 +134,11 @@ Type: `number`
 
 A numeric value associated with the event (e.g. `42`)
 
-### service.pageview.emit(pageview: PageView)
+### service.pageView.emit(pageView: PageView)
 
 Emit a Google Analytics page view.
 
-#### pageview
+#### PageView
 
 ##### page
 
@@ -173,8 +152,3 @@ The path portion of a URL. This value should start with a slash (/) character.
 Type: `string`
 
 The title of the page (e.g. homepage)
-
-
-## License
-
-MIT © [Sam Verschueren](https://github.com/SamVerschueren)

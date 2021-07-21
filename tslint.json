@@ -1,11 +1,7 @@
 {
-	"extends": "tslint-xo",
-	"rulesDirectory": [
-		"node_modules/codelyzer"
-	],
-	"rules": {
-		"no-stateless-class": false,
-		"no-unnecessary-class": false,
-		"align": false
-	}
+  "extends": "../../tslint.json",
+  "rules": {
+    "no-stateless-class": false,
+    "no-unnecessary-class": false
+  }
 }
